@@ -11,7 +11,8 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
+Bundle 'git.zip'
+Bundle 'fugitive.git'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/OmniCppComplete'    
@@ -20,7 +21,7 @@ Bundle 'ervandew/supertab'
 Bundle 'skwp/vim-powerline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'sjl/badwolf'
-Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'Command-T' 
 
 filetype plugin indent on         " Turn on file type detection.
 syntax enable                     " Turn on syntax highlighting.
@@ -132,4 +133,3 @@ nnoremap <leader>w <C-w>v<C-w>l
 
 set ofu=syntaxcomplete#Complete
 set completeopt=longest,menuone
-
