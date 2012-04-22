@@ -23,6 +23,8 @@ Bundle 'skwp/vim-powerline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'sjl/badwolf'
 Bundle 'Command-T' 
+"Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'nanotech/jellybeans.vim'
 
 filetype plugin indent on         " Turn on file type detection.
 syntax enable                     " Turn on syntax highlighting.
@@ -78,7 +80,10 @@ set background=dark
 colorscheme badwolf
 
 if has('gui_running')
-   set guifont=Menlo:h14
+   "set guifont=Menlo:h14
+   set guifont=Menlo\ for\ Powerline:h14
+   let g:Powerline_symbols='fancy'
+    set guioptions=egmrt
 endif
 
 
