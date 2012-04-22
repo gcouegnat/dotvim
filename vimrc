@@ -12,7 +12,7 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'git.zip'
-Bundle 'fugitive.git'
+Bundle 'fugitive.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/OmniCppComplete'    
