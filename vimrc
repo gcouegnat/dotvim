@@ -7,6 +7,7 @@ filetype off
 "silent! call pathogen#runtime_append_all_bundles()
 "silent! call pathogen#helptags()
 
+let g:vundle_default_git_proto = 'http'
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
