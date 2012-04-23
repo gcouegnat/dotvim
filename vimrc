@@ -12,9 +12,10 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
+"Git
 Bundle 'git.zip'
 Bundle 'fugitive.vim'
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/OmniCppComplete'    
 Bundle 'vim-scripts/ack.vim'
@@ -30,7 +31,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/snipmate.vim'
 "Bundle 'shougo/neocomplcache'
 Bundle 'majutsushi/tagbar'
-
+Bundle 'AutoClose'
 
 filetype plugin indent on         " Turn on file type detection.
 syntax enable                     " Turn on syntax highlighting.
@@ -83,7 +84,8 @@ set expandtab                    " Use spaces instead of tabs
 
 " --- Color theme ---
 set background=dark
-colorscheme badwolf
+colorscheme mustang
+"colorscheme badwolf
 
 if has('gui_running')
     "set guifont=Menlo:h14
@@ -143,7 +145,24 @@ nmap <C-l> <C-w>l
 nnoremap <leader>q gqip
 nnoremap <leader>w <C-w>v<C-w>l
 
-set ofu=syntaxcomplete#Complete
-set completeopt=longest,menuone
+"set ofu=syntaxcomplete#Complete
+"set completeopt=longest,menuone
 
-let g:neocomplcache_enable_at_startup = 1
+"let g:neocomplcache_enable_at_startup = 1
+"set tags+=~/.vim/ctags/coda.ctags
+set tags+=~/.vim/ctags/codapp.ctags
+
+" OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" automatically open and close the popup menu / preview window
+"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview
+set ofu=syntaxcomplete#Complete
+
