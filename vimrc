@@ -22,9 +22,15 @@ Bundle 'ervandew/supertab'
 Bundle 'skwp/vim-powerline'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'sjl/badwolf'
-Bundle 'Command-T' 
+"Bundle 'Command-T' 
 "Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'nanotech/jellybeans.vim'
+Bundle 'kien/ctrlp.vim'
+"Bundle 'msanders/snipmate.vim'
+Bundle 'ervandew/snipmate.vim'
+"Bundle 'shougo/neocomplcache'
+Bundle 'majutsushi/tagbar'
+
 
 filetype plugin indent on         " Turn on file type detection.
 syntax enable                     " Turn on syntax highlighting.
@@ -69,9 +75,9 @@ set tabstop=4                    " Global tab width.
 set shiftwidth=4                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
 
-set laststatus=2                  " Show the status line all the time
+"set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 "set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 
@@ -80,9 +86,9 @@ set background=dark
 colorscheme badwolf
 
 if has('gui_running')
-   "set guifont=Menlo:h14
-   set guifont=Menlo\ for\ Powerline:h14
-   let g:Powerline_symbols='fancy'
+    "set guifont=Menlo:h14
+    set guifont=Menlo\ for\ Powerline:h14
+    let g:Powerline_symbols='fancy'
     set guioptions=egmrt
 endif
 
@@ -139,3 +145,5 @@ nnoremap <leader>w <C-w>v<C-w>l
 
 set ofu=syntaxcomplete#Complete
 set completeopt=longest,menuone
+
+let g:neocomplcache_enable_at_startup = 1
