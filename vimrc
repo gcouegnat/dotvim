@@ -9,31 +9,37 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-"Git
+
 Bundle 'git.zip'
 Bundle 'fugitive.vim'
+
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/OmniCppComplete'    
+
 Bundle 'vim-scripts/ack.vim'
 Bundle 'ervandew/supertab'
 Bundle 'skwp/vim-powerline'
+
 "Bundle 'Command-T' 
 Bundle 'kien/ctrlp.vim'
 "Bundle 'msanders/snipmate.vim'
 Bundle 'ervandew/snipmate.vim'
 "Bundle 'shougo/neocomplcache'
 Bundle 'majutsushi/tagbar'
+
 "Bundle 'AutoClose'
+Bundle 'tpope/vim-surround'
 
 "{{{ Colors
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'sjl/badwolf'
 Bundle 'vim-scripts/Lucius'
-Bundle 'vim-scripts/freya'
-Bundle 'nanotech/jellybeans.vim'
+"Bundle 'vim-scripts/freya'
+"Bundle 'nanotech/jellybeans.vim'
 Bundle 'wgibbs/vim-irblack'
-
+"Bundle 'gregsexton/Atom'
+"}}}
 
 filetype plugin indent on         " Turn on file type detection.
 syntax enable                     " Turn on syntax highlighting.
@@ -96,8 +102,10 @@ if has('gui_running')
     set guifont=Menlo\ for\ Powerline:h12
     let g:Powerline_symbols='fancy'
     set guioptions=egmrt
-    let g:lucius_style = "light"
-    colorscheme lucius
+    "let g:lucius_style = 'dark'
+    "colorscheme lucius
+    set background=light
+    colorscheme solarized
 endif
 
 let mapleader = ","
@@ -116,7 +124,7 @@ map <leader>tm :tabmove
 " Uncomment to use Jamis Buck's file opening plugin
 "map <Leader>t :FuzzyFinderTextMate<Enter>
 
-" Controversial...swap colon and semicolon for easier commands
+" Controversial...swap colon and semicjolon for easier commands
 "nnoremap ; :
 "nnoremap : ;
 
