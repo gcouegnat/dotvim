@@ -1,6 +1,3 @@
-" Example Vim configuration.
-" Copy or symlink to ~/.vimrc or ~/_vimrc.
-
 set nocompatible                  " Must come first because it changes other options.
 filetype off
 
@@ -15,23 +12,28 @@ Bundle 'gmarik/vundle'
 "Git
 Bundle 'git.zip'
 Bundle 'fugitive.vim'
-"Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/OmniCppComplete'    
 Bundle 'vim-scripts/ack.vim'
 Bundle 'ervandew/supertab'
 Bundle 'skwp/vim-powerline'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'sjl/badwolf'
 "Bundle 'Command-T' 
-"Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'nanotech/jellybeans.vim'
 Bundle 'kien/ctrlp.vim'
 "Bundle 'msanders/snipmate.vim'
 Bundle 'ervandew/snipmate.vim'
 "Bundle 'shougo/neocomplcache'
 Bundle 'majutsushi/tagbar'
-Bundle 'AutoClose'
+"Bundle 'AutoClose'
+
+"{{{ Colors
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'sjl/badwolf'
+Bundle 'vim-scripts/Lucius'
+Bundle 'vim-scripts/freya'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'wgibbs/vim-irblack'
+
 
 filetype plugin indent on         " Turn on file type detection.
 syntax enable                     " Turn on syntax highlighting.
@@ -42,7 +44,7 @@ language en_US
 set t_Co=256
 
 set showcmd                       " Display incomplete commands.
-set showmode                      " Display the mode you're in.
+set showmode                    " Display the mode you're in.
 
 set backspace=indent,eol,start    " Intuitive backspacing.
 
@@ -72,8 +74,8 @@ set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
 " UNCOMMENT TO USE
-set tabstop=4                    " Global tab width.
-set shiftwidth=4                 " And again, related.
+set tabstop=2                    " Global tab width.
+set shiftwidth=2                 " And again, related.
 set expandtab                    " Use spaces instead of tabs
 
 "set laststatus=2                  " Show the status line all the time
@@ -83,18 +85,20 @@ set expandtab                    " Use spaces instead of tabs
 
 
 " --- Color theme ---
-set background=dark
-colorscheme mustang
+"let g:lucius_style = "light"
+"colorscheme lucius
 "colorscheme badwolf
+set background=dark
+colorscheme solarized
 
 if has('gui_running')
     "set guifont=Menlo:h14
-    set guifont=Menlo\ for\ Powerline:h14
+    set guifont=Menlo\ for\ Powerline:h12
     let g:Powerline_symbols='fancy'
     set guioptions=egmrt
+    let g:lucius_style = "light"
+    colorscheme lucius
 endif
-
-
 
 let mapleader = ","
 
@@ -131,7 +135,7 @@ map <leader>n :NERDTreeToggle<cr>
 " map <leader>b :TlistToggle<cr>
 map <leader>v :e! ~/.vim/vimrc<cr>
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
-
+map <leader>t :TagbarToggle<cr>
 
 autocmd BufWritePost vimrc source ~/.vim/vimrc
 
@@ -139,6 +143,12 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
+
+map <Left>  :echo "no!"<cr>
+map <Right> :echo "no!"<cr>
+map <Up>    :echo "no!"<cr>
+map <Down>  :echo "no!"<cr>
+
 
 "nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 "nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
@@ -166,3 +176,4 @@ let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 set completeopt=menuone,menu,longest,preview
 set ofu=syntaxcomplete#Complete
 
+set wildignore+=*.o,*.a,./doc/**
