@@ -1,176 +1,269 @@
-set nocompatible                  " Must come first because it changes other options.
+".vimrc
+"
+" Author: Guillaume Couégnat <guillaume.couegnat@gmail.com>
+"
+" Heavily inspired by Steve Losh's vim config
+" http://bitbucket.org/sjl/dotfiles/src/tip/vim/
+"
+
+" Premable {{{
+
 filetype off
-
-"silent! call pathogen#runtime_append_all_bundles()
-"silent! call pathogen#helptags()
-
-let g:vundle_default_git_proto = 'http'
+set nocompatible
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
-Bundle 'gmarik/vundle'
-
-Bundle 'git.zip'
-Bundle 'fugitive.vim'
-
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'vim-scripts/OmniCppComplete'    
-
-Bundle 'vim-scripts/ack.vim'
-Bundle 'ervandew/supertab'
-Bundle 'skwp/vim-powerline'
-
-"Bundle 'Command-T' 
-Bundle 'kien/ctrlp.vim'
-"Bundle 'msanders/snipmate.vim'
-Bundle 'ervandew/snipmate.vim'
-"Bundle 'shougo/neocomplcache'
-Bundle 'majutsushi/tagbar'
-
-"Bundle 'AutoClose'
-Bundle 'tpope/vim-surround'
-
-"{{{ Colors
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'sjl/badwolf'
-Bundle 'vim-scripts/Lucius'
-"Bundle 'vim-scripts/freya'
-"Bundle 'nanotech/jellybeans.vim'
-Bundle 'wgibbs/vim-irblack'
-"Bundle 'gregsexton/Atom'
-"}}}
-
 filetype plugin indent on         " Turn on file type detection.
-syntax enable                     " Turn on syntax highlighting.
 
-runtime macros/matchit.vim        " Load the matchit plugin.
-language en_US
+" }}}
 
-set t_Co=256
+" Bundle management {{{
 
-set showcmd                       " Display incomplete commands.
-set showmode                    " Display the mode you're in.
+" can't get with git protocol through firewall at work
+let g:vundle_default_git_proto = 'http'
 
-set backspace=indent,eol,start    " Intuitive backspacing.
+Bundle 'Raimondi/delimitMate'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'ervandew/snipmate.vim'
+Bundle 'ervandew/supertab'
+Bundle 'fugitive.vim'
+Bundle 'git.zip'
+Bundle 'gmarik/vundle'
+Bundle 'kien/ctrlp.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'sjl/badwolf'
+Bundle 'skwp/vim-powerline'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/OmniCppComplete'
+Bundle 'vim-scripts/ack.vim'
+"Bundle 'vim-scripts/Lucius'
+"Bundle 'nanotech/jellybeans.vim'
+"Bundle 'wgibbs/vim-irblack'
 
-set hidden                        " Handle multiple buffers better.
+" }}}
 
-set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
+" Basic options {{{
 
-set ignorecase                    " Case-insensitive searching.
-set smartcase                     " But case-sensitive if expression contains a capital letter.
+set encoding=utf-8
+lang en_US.UTF-8
+set showcmd
+set showmode
+set backspace=indent,eol,start
+set hidden
+set cursorline
+set wildmenu
+set ignorecase
+set smartcase
+set number
+set ruler
+set incsearch
+set hlsearch
+set laststatus=2
+set history=1000
+set undofile
+set undoreload=10000
+set wrap
+set scrolloff=3
+set title
+set visualbell
+set list
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set showbreak=↪
+set shell=/bin/bash
+set autoread
+set autowrite
+set completeopt=longest,menuone,preview
+au FocusLost * :silent! wall
 
-set number                        " Show line numbers.
-set ruler                         " Show cursor position.
+" }}}
 
-set incsearch                     " Highlight matches as you type.
-set hlsearch                      " Highlight matches.
+" Wildmenu completion {{{
 
-set wrap                          " Turn on line wrapping.
-set scrolloff=3                   " Show 3 lines of context around the cursor.
+set wildmenu
+set wildmode=list:longest
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.o,*.obj,*.a
+set wildignore+=*.sw?
+set wildignore+=*.DS_Store
 
-set title                         " Set the terminal's title
+" }}}
 
-set visualbell                    " No beeping.
+" Tabs, spaces, wrapping {{{
 
-set nobackup                      " Don't make a backup before overwriting a file.
-set nowritebackup                 " And again.
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
+set tabstop=8
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set wrap
+set textwidth=80
+set formatoptions=qrn1
+set colorcolumn=+1
 
-" UNCOMMENT TO USE
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
-set expandtab                    " Use spaces instead of tabs
+" }}}
 
-"set laststatus=2                  " Show the status line all the time
-" Useful status information at bottom of screen
-"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
-"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+" Backups {{{
 
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files
+set backup                        " enable backups
+set noswapfile
 
-" --- Color theme ---
-"let g:lucius_style = "light"
-"colorscheme lucius
-"colorscheme badwolf
-set background=dark
-colorscheme solarized
+" }}}
 
-if has('gui_running')
-    "set guifont=Menlo:h14
-    set guifont=Menlo\ for\ Powerline:h12
-    let g:Powerline_symbols='fancy'
-    set guioptions=egmrt
-    "let g:lucius_style = 'dark'
-    "colorscheme lucius
-    set background=light
-    colorscheme solarized
-endif
+" Leader {{{
 
 let mapleader = ","
+let maplocalleader = ";;"
 
-" Tab mappings.
-map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
+" }}}
 
-" Uncomment to use Jamis Buck's file opening plugin
-"map <Leader>t :FuzzyFinderTextMate<Enter>
+" Colorscheme {{{
 
-" Controversial...swap colon and semicjolon for easier commands
-"nnoremap ; :
-"nnoremap : ;
+syntax on
+set t_Co=256
+set background=dark
+colorscheme badwolf
 
-"vnoremap ; :
-"vnoremap : ;
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" Automatic fold settings for specific files. Uncomment to use.
-" autocmd FileType ruby setlocal foldmethod=syntax
-" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
+" }}}
 
-" For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
-autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+" Abbreviations {{{
+
+iabbrev gc@ Guillaume Couégnat <guillaume.couegnat@gmail.com>
+iabbrev lcts@ Guillaume Couégnat <couegnat@lcts.u-bordeaux1.fr>
+
+" }}}
+
+" GUI {{{
+
+if has('gui_running')
+
+    set guioptions=egmrt
+    set guicursor=n-c:block-Cursor-blinkon0
+    set guicursor+=v:block-vCursor-blinkon0
+    set guicursor+=i-ci:ver20-iCursor
+
+    set background=dark
+    colorscheme badwolf
+
+    if has('gui_macvim')
+        set guifont=Menlo\ Regular\ for\ Powerline:h13
+        let g:Powerline_symbols='fancy'
+    endif
+endif
+
+" }}}
+
+" Mapping {{{
+
+" Clean trailing whitespace
+nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
+
+" some more stuff
+nnoremap <leader>v :e! ~/.vim/vimrc<cr>
+noremap <leader><space> :nohlsearch<CR><CR>
+
+" }}}
+
+" Searching and movement {{{
+
+nnoremap / /\v
+vnoremap / /\v
+
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+set hlsearch
+set gdefault
+
+noremap <silent> <leader><space> :noh<cr>
+
+runtime macros/matchit.vim
+
+"map <Left>  :echo "no!"<cr>
+"map <Right> :echo "no!"<cr>
+"map <Up>    :echo "no!"<cr>
+"map <Down>  :echo "no!"<cr>
+
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k
+
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+" }}}
+
+" Folding {{{
+
+set foldlevelstart=0
+nnoremap <Space> za
+vnoremap <Space> za
+
+" from Steve Losh
+"function! MyFoldText() " {{{
+    "let line = getline(v:foldstart)
+
+    "let nucolwidth = &fdc + &number * &numberwidth
+    "let windowwidth = winwidth(0) - nucolwidth - 3
+    "let foldedlinecount = v:foldend - v:foldstart
+
+    "" expand tabs into spaces
+    "let onetab = strpart('          ', 0, &tabstop)
+    "let line = substitute(line, '\t', onetab, 'g')
+
+    "let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    "let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    "return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+"endfunction " }}}
+"set foldtext=MyFoldText()
+" }}}
+
+" Filetype specific {{{
+
+" Vim {{{
+augroup ft_vim
+    au!
+    au FileType vim setlocal foldmethod=marker
+    au FileType help setlocal textwidth=78
+augroup end
+" }}}
+
+" SCons {{{
 autocmd bufnewfile,bufread SCons* setfiletype python
+" }}}
 
+" }}}
+
+" Plugin settings {{{
+
+" NERDTree {{{
 map <leader>n :NERDTreeToggle<cr>
-" map <leader>b :TlistToggle<cr>
-map <leader>v :e! ~/.vim/vimrc<cr>
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+" }}}
+
+" Tagbar {{{{
 map <leader>t :TagbarToggle<cr>
+" }}}
 
-autocmd BufWritePost vimrc source ~/.vim/vimrc
+" Ctrp-P {{{
+let g:ctrlp_working_path_mode = 2
+" }}}
 
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
+" Powerline {{{
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_cache_enabled = 1
+" }}}
 
-map <Left>  :echo "no!"<cr>
-map <Right> :echo "no!"<cr>
-map <Up>    :echo "no!"<cr>
-map <Down>  :echo "no!"<cr>
-
-
-"nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
-"nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-nnoremap <leader>q gqip
-nnoremap <leader>w <C-w>v<C-w>l
-
-"set ofu=syntaxcomplete#Complete
-"set completeopt=longest,menuone
-
-"let g:neocomplcache_enable_at_startup = 1
-"set tags+=~/.vim/ctags/coda.ctags
-set tags+=~/.vim/ctags/codapp.ctags
-
-" OmniCppComplete
+" OmniCppComplete {{{
+set ofu=syntaxcomplete#Complete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
 let OmniCpp_ShowAccess = 1
@@ -178,10 +271,22 @@ let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
 let OmniCpp_MayCompleteDot = 1 " autocomplete after .
 let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" automatically open and close the popup menu / preview window
-"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest,preview
-set ofu=syntaxcomplete#Complete
+let OmniCpp_SelectFirstItem= 1
+" }}}
 
-set wildignore+=*.o,*.a,./doc/**
+" SuperTab {{{
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabLongestHighlight = 1
+
+" }}}
+
+" }}}
+
+set tags+=~/.vim/ctags/codapp.ctags
+
+
+
+
+
+
