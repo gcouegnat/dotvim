@@ -36,11 +36,11 @@ Bundle 'sjl/badwolf'
 Bundle 'skwp/vim-powerline'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/Lucius'
 Bundle 'vim-scripts/OmniCppComplete'
 Bundle 'vim-scripts/ack.vim'
-"Bundle 'vim-scripts/Lucius'
-"Bundle 'nanotech/jellybeans.vim'
-"Bundle 'wgibbs/vim-irblack'
+Bundle 'wgibbs/vim-irblack'
+Bundle 'Tabular'
 
 " }}}
 
@@ -68,7 +68,7 @@ set wrap
 set scrolloff=3
 set title
 set visualbell
-set list
+set nolist
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
 set shell=/bin/bash
@@ -99,7 +99,7 @@ set expandtab
 set wrap
 set textwidth=80
 set formatoptions=qrn1
-set colorcolumn=+1
+"set colorcolumn=+1
 
 " }}}
 
@@ -145,13 +145,14 @@ if has('gui_running')
     set guioptions=egmrt
     set guicursor=n-c:block-Cursor-blinkon0
     set guicursor+=v:block-vCursor-blinkon0
-    set guicursor+=i-ci:ver20-iCursor
+    "set guicursor+=i-ci:ver20-iCursor
 
     set background=dark
-    colorscheme badwolf
+    colorscheme twilight
 
     if has('gui_macvim')
-        set guifont=Menlo\ Regular\ for\ Powerline:h13
+        "set guifont=Menlo\ Regular\ for\ Powerline:h13
+        set guifont=DejaVuSansMono:h14
         let g:Powerline_symbols='fancy'
     endif
 endif
@@ -209,22 +210,22 @@ nnoremap <Space> za
 vnoremap <Space> za
 
 " from Steve Losh
-"function! MyFoldText() " {{{
-    "let line = getline(v:foldstart)
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
 
-    "let nucolwidth = &fdc + &number * &numberwidth
-    "let windowwidth = winwidth(0) - nucolwidth - 3
-    "let foldedlinecount = v:foldend - v:foldstart
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
 
-    "" expand tabs into spaces
-    "let onetab = strpart('          ', 0, &tabstop)
-    "let line = substitute(line, '\t', onetab, 'g')
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
 
-    "let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-    "let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    "return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-"endfunction " }}}
-"set foldtext=MyFoldText()
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
+    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+endfunction " }}}
+set foldtext=MyFoldText()
 " }}}
 
 " Filetype specific {{{
