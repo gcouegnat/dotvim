@@ -20,23 +20,22 @@ filetype plugin indent on         " Turn on file type detection.
 
 " can't get with git protocol through firewall at work
 let g:vundle_default_git_proto = 'http'
+Bundle 'gmarik/vundle'
 
-Bundle 'Raimondi/delimitMate'
+"Bundle 'Raimondi/delimitMate'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/snipmate.vim'
 Bundle 'ervandew/supertab'
 Bundle 'fugitive.vim'
-Bundle 'git.zip'
-Bundle 'gmarik/vundle'
+"Bundle 'git.zip'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/badwolf'
-Bundle 'skwp/vim-powerline'
-Bundle 'tpope/vim-markdown'
+"Bundle 'skwp/vim-powerline'
+Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/Lucius'
 Bundle 'vim-scripts/OmniCppComplete'
 Bundle 'vim-scripts/ack.vim'
 Bundle 'wgibbs/vim-irblack'
@@ -143,17 +142,15 @@ iabbrev lcts@ Guillaume Couégnat <couegnat@lcts.u-bordeaux1.fr>
 if has('gui_running')
 
     set guioptions=egmrt
-    set guicursor=n-c:block-Cursor-blinkon0
-    set guicursor+=v:block-vCursor-blinkon0
-    "set guicursor+=i-ci:ver20-iCursor
+    set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
     set background=dark
     colorscheme twilight
 
     if has('gui_macvim')
-        "set guifont=Menlo\ Regular\ for\ Powerline:h13
         set guifont=DejaVuSansMono:h14
-        let g:Powerline_symbols='fancy'
+        "set guifont=Inconsolata:h16
+        set transparency=5
     endif
 endif
 
@@ -259,8 +256,12 @@ let g:ctrlp_working_path_mode = 2
 " }}}
 
 " Powerline {{{
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_cache_enabled = 1
+if has('gui_macvim')
+    let g:Powerline_symbols='fancy'
+else
+    let g:Powerline_symbols = 'compatible'
+endif
+let g:Powerline_cache_enabled = 0
 " }}}
 
 " OmniCppComplete {{{
