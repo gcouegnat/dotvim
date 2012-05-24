@@ -40,7 +40,7 @@ Bundle 'vim-scripts/OmniCppComplete'
 Bundle 'vim-scripts/ack.vim'
 Bundle 'wgibbs/vim-irblack'
 Bundle 'Tabular'
-
+Bundle 'klen/python-mode'
 " }}}
 
 " Basic options {{{
@@ -281,6 +281,19 @@ let OmniCpp_SelectFirstItem= 1
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:SuperTabLongestHighlight = 1
 
+" }}}
+
+" Python-mode {{{
+let g:pymode_doc = 0
+let g:pymode_run = 0
+let g:pymode_lint = 0
+let g:pymode_rope = 0
+let g:pymode_folding = 0
+let g:pymode_utils = 0
+let g:pymode_utils_whitespaces = 0
+let g:pymode_syntax = 0
+let g:pymode_options_indent = 0
+let g:pymode_options_other = 0
 " }}}
 
 " }}}
