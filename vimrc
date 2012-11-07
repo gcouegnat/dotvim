@@ -22,25 +22,28 @@ filetype plugin indent on         " Turn on file type detection.
 let g:vundle_default_git_proto = 'http'
 Bundle 'gmarik/vundle'
 
-"Bundle 'Raimondi/delimitMate'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/snipmate.vim'
 Bundle 'ervandew/supertab'
 Bundle 'fugitive.vim'
-"Bundle 'git.zip'
 Bundle 'kien/ctrlp.vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/badwolf'
-"Bundle 'skwp/vim-powerline'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-scripts/OmniCppComplete'
 Bundle 'vim-scripts/ack.vim'
-Bundle 'wgibbs/vim-irblack'
+"Bundle 'wgibbs/vim-irblack'
+Bundle 'twerth/ir_black.git'
 Bundle 'Tabular'
 Bundle 'klen/python-mode'
+Bundle 'airblade/vim-rooter'
+"Bundle 'spolu/dwm.vim'
+"Bundle 'basilgor/vim-autotags'
+Bundle 'noahfrederick/Hemisu'
+Bundle 'spec.vim'
 " }}}
 
 " Basic options {{{
@@ -51,7 +54,7 @@ set showcmd
 set showmode
 set backspace=indent,eol,start
 set hidden
-set cursorline
+set nocursorline
 set wildmenu
 set ignorecase
 set smartcase
@@ -63,7 +66,6 @@ set laststatus=2
 set history=1000
 set undofile
 set undoreload=10000
-set wrap
 set scrolloff=3
 set title
 set visualbell
@@ -95,7 +97,7 @@ set tabstop=8
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set wrap
+set nowrap
 set textwidth=80
 set formatoptions=qrn1
 "set colorcolumn=+1
@@ -132,8 +134,8 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Abbreviations {{{
 
-iabbrev gc@ Guillaume Couégnat <guillaume.couegnat@gmail.com>
-iabbrev lcts@ Guillaume Couégnat <couegnat@lcts.u-bordeaux1.fr>
+"iabbrev gc@ Guillaume Couégnat <guillaume.couegnat@gmail.com>
+"iabbrev lcts@ Guillaume Couégnat <couegnat@lcts.u-bordeaux1.fr>
 
 " }}}
 
@@ -144,13 +146,17 @@ if has('gui_running')
     set guioptions=egmrt
     set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
-    set background=dark
-    colorscheme twilight
+    "set background=dark
+    set background=light
+    "colorscheme grb256
+    "colorscheme badwolf
+    colorscheme solarized
 
     if has('gui_macvim')
-        set guifont=DejaVuSansMono:h14
-        "set guifont=Inconsolata:h16
-        set transparency=5
+        set transparency=1
+        set guifont=Menlo\ Regular\ for\ Powerline:h14
+        "set guifont=Inconsolata-dz\ for\ Powerline:h12
+        "set guifont=Ubuntu\ Mono:h16
     endif
 endif
 
@@ -172,7 +178,7 @@ noremap <leader><space> :nohlsearch<CR><CR>
 nnoremap / /\v
 vnoremap / /\v
 
-set ignorecase
+"set ignorecase
 set smartcase
 set incsearch
 set showmatch
@@ -198,6 +204,7 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
+
 " }}}
 
 " Folding {{{
@@ -220,12 +227,18 @@ function! MyFoldText() " {{{
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+    return line . '…' . repeat("-",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction " }}}
+
 set foldtext=MyFoldText()
 " }}}
 
 " Filetype specific {{{
+
+" C++ {{{
+au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set omnifunc=omni#cpp#complete#Main
+au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set filetype=cpp
+" }}}
 
 " Vim {{{
 augroup ft_vim
@@ -236,7 +249,24 @@ augroup end
 " }}}
 
 " SCons {{{
-autocmd bufnewfile,bufread SCons* setfiletype python
+autocmd bufnewfile,bufread SCons* set filetype=python
+" }}}
+
+" Ninja {{{
+autocmd bufnewfile,bufread *.ninja set filetype=ninja
+" }}}
+
+" Octave {{{
+augroup filetypedetect
+    au! BufRead,BufNewFile *.m,*.oct set filetype=octave
+augroup end
+
+if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype octave
+        \if &omnifunc == "" |
+        \setlocal omnifunc=syntaxcomplete#Complete |
+        \endif
+endif
 " }}}
 
 " }}}
@@ -298,10 +328,4 @@ let g:pymode_options_other = 0
 
 " }}}
 
-set tags+=~/.vim/ctags/codapp.ctags
-
-
-
-
-
-
+"set tags+=~/.vim/ctags/codapp.ctags
