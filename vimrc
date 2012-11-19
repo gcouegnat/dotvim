@@ -22,6 +22,7 @@ filetype plugin indent on         " Turn on file type detection.
 let g:vundle_default_git_proto = 'http'
 Bundle 'gmarik/vundle'
 
+Bundle 'JuliaLang/julia-vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Tabular'
 Bundle 'altercation/vim-colors-solarized'
