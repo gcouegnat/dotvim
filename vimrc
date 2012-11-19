@@ -22,28 +22,22 @@ filetype plugin indent on         " Turn on file type detection.
 let g:vundle_default_git_proto = 'http'
 Bundle 'gmarik/vundle'
 
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'Tabular'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ervandew/snipmate.vim'
 Bundle 'ervandew/supertab'
 Bundle 'fugitive.vim'
 Bundle 'kien/ctrlp.vim'
+Bundle 'klen/python-mode'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/badwolf'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-surround'
+Bundle 'twerth/ir_black.git'
 Bundle 'vim-scripts/OmniCppComplete'
 Bundle 'vim-scripts/ack.vim'
-"Bundle 'wgibbs/vim-irblack'
-Bundle 'twerth/ir_black.git'
-Bundle 'Tabular'
-Bundle 'klen/python-mode'
-Bundle 'airblade/vim-rooter'
-"Bundle 'spolu/dwm.vim'
-"Bundle 'basilgor/vim-autotags'
-Bundle 'noahfrederick/Hemisu'
-Bundle 'spec.vim'
 " }}}
 
 " Basic options {{{
@@ -54,7 +48,7 @@ set showcmd
 set showmode
 set backspace=indent,eol,start
 set hidden
-set nocursorline
+set cursorline
 set wildmenu
 set ignorecase
 set smartcase
@@ -146,18 +140,14 @@ if has('gui_running')
     set guioptions=egmrt
     set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
-    "set background=dark
     set background=light
-    "colorscheme grb256
-    "colorscheme badwolf
     colorscheme solarized
 
     if has('gui_macvim')
         set transparency=1
-        set guifont=Menlo\ Regular\ for\ Powerline:h14
-        "set guifont=Inconsolata-dz\ for\ Powerline:h12
-        "set guifont=Ubuntu\ Mono:h16
+        set guifont=Menlo\ Regular\ for\ Powerline:h12
     endif
+
 endif
 
 " }}}
@@ -170,6 +160,10 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " some more stuff
 nnoremap <leader>v :e! ~/.vim/vimrc<cr>
 noremap <leader><space> :nohlsearch<CR><CR>
+
+" Alignment
+nnoremap <leader>a= :Tabular /=<CR>
+
 
 " }}}
 
@@ -289,7 +283,7 @@ let g:ctrlp_working_path_mode = 2
 if has('gui_macvim')
     let g:Powerline_symbols='fancy'
 else
-    let g:Powerline_symbols = 'compatible'
+    let g:Powerline_symbols = 'fancy'
 endif
 let g:Powerline_cache_enabled = 0
 " }}}
