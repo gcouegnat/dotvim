@@ -16,31 +16,6 @@ filetype plugin indent on         " Turn on file type detection.
 
 " }}}
 
-" Bundle management {{{
-
-" can't get with git protocol through firewall at work
-let g:vundle_default_git_proto = 'http'
-Bundle 'gmarik/vundle'
-
-Bundle 'JuliaLang/julia-vim'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'Tabular'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'ervandew/snipmate.vim'
-Bundle 'ervandew/supertab'
-Bundle 'fugitive.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'klen/python-mode'
-Bundle 'majutsushi/tagbar'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'sjl/badwolf'
-Bundle 'tpope/vim-surround'
-Bundle 'twerth/ir_black.git'
-Bundle 'vim-scripts/OmniCppComplete'
-Bundle 'vim-scripts/ack.vim'
-" }}}
-
 " Basic options {{{
 
 set encoding=utf-8
@@ -53,7 +28,7 @@ set cursorline
 set wildmenu
 set ignorecase
 set smartcase
-set number
+set nonumber
 set ruler
 set incsearch
 set hlsearch
@@ -73,6 +48,33 @@ set autowrite
 set completeopt=longest,menuone,preview
 au FocusLost * :silent! wall
 
+" }}}
+
+" Bundle management {{{
+
+" can't get with git protocol through firewall at work
+let g:vundle_default_git_proto = 'http'
+Bundle 'gmarik/vundle'
+
+Bundle 'JuliaLang/julia-vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'Tabular'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'ervandew/snipmate.vim'
+Bundle 'ervandew/supertab'
+Bundle 'fugitive.vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'klen/python-mode'
+Bundle 'majutsushi/tagbar'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'sjl/badwolf'
+Bundle 'tpope/vim-surround'
+Bundle 'twerth/ir_black.git'
+Bundle 'vim-scripts/OmniCppComplete'
+Bundle 'vim-scripts/ack.vim'
+Bundle 'Stormherz/tablify'
 " }}}
 
 " Wildmenu completion {{{
@@ -131,6 +133,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 "iabbrev gc@ Guillaume Couégnat <guillaume.couegnat@gmail.com>
 "iabbrev lcts@ Guillaume Couégnat <couegnat@lcts.u-bordeaux1.fr>
+iabbrev ccopy Copyright 2012, Guillaume Couégnat
 
 " }}}
 
@@ -141,12 +144,12 @@ if has('gui_running')
     set guioptions=egmrt
     set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
-    set background=light
-    colorscheme solarized
+    "set background=dark
+    colorscheme molokai
 
     if has('gui_macvim')
-        set transparency=1
-        set guifont=Menlo\ Regular\ for\ Powerline:h12
+        set transparency=5
+        set guifont=Menlo\ for\ Powerline:h12
     endif
 
 endif
@@ -159,7 +162,8 @@ endif
 nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 
 " some more stuff
-nnoremap <leader>v :e! ~/.vim/vimrc<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 noremap <leader><space> :nohlsearch<CR><CR>
 
 " Alignment
@@ -220,7 +224,7 @@ function! MyFoldText() " {{{
     let onetab = strpart('          ', 0, &tabstop)
     let line = substitute(line, '\t', onetab, 'g')
 
-    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let line = strpart(line, 0, windowwidth - 4 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
     return line . '…' . repeat("-",fillcharcount) . foldedlinecount . '…' . ' '
 endfunction " }}}
@@ -263,6 +267,10 @@ if has("autocmd") && exists("+omnifunc")
         \endif
 endif
 " }}}
+
+" Markdown {{{
+autocmd BufNewFile,BufRead *.md,*.markdown set filetype=markdown
+"}}}
 
 " }}}
 
