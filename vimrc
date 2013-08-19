@@ -56,25 +56,27 @@ au FocusLost * :silent! wall
 let g:vundle_default_git_proto = 'http'
 Bundle 'gmarik/vundle'
 
-Bundle 'JuliaLang/julia-vim'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'JuliaLang/julia-vim'
+Bundle 'SirVer/ultisnips'
+Bundle 'Stormherz/tablify'
 Bundle 'Tabular'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'ervandew/snipmate.vim'
+"Bundle 'bling/vim-airline'
 Bundle 'ervandew/supertab'
-Bundle 'fugitive.vim'
 Bundle 'kien/ctrlp.vim'
-Bundle 'klen/python-mode'
 Bundle 'majutsushi/tagbar'
+"Bundle 'nelstrom/vim-blackboard'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'sjl/badwolf'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'twerth/ir_black.git'
 Bundle 'vim-scripts/OmniCppComplete'
 Bundle 'vim-scripts/ack.vim'
-Bundle 'Stormherz/tablify'
+Bundle 'matze/vim-move'
 " }}}
 
 " Wildmenu completion {{{
@@ -144,12 +146,12 @@ if has('gui_running')
     set guioptions=egmrt
     set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
-    "set background=dark
+    set background=dark
     colorscheme molokai
 
     if has('gui_macvim')
-        set transparency=5
-        set guifont=Menlo\ for\ Powerline:h12
+        set transparency=0
+        set guifont=Menlo\ Regular\ for\ Powerline:h12
     endif
 
 endif
@@ -329,6 +331,9 @@ let g:pymode_options_indent = 0
 let g:pymode_options_other = 0
 " }}}
 
+" Move {{{
+let g:move_key_modifier = 'C'
+" }}} 
 " }}}
 
 "set tags+=~/.vim/ctags/codapp.ctags
