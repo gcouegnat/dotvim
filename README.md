@@ -3,12 +3,10 @@ dotvim
 
 What ?
 ------
-
-my vim dotfiles
+My vim dotfiles
 
 To install
 ----------
-
     git clone http://github.com/gcouegnat/dotvim.git ~/.vim
     mkdir -p ~/.vim/tmp/{backup,swap,undo}
     mkdir -p ~/.vim/bundle
