@@ -32,12 +32,10 @@ set autowrite
 set completeopt=longest,menuone,preview
 au FocusLost * :silent! wall
 " }}}
-"
 "Leader key {{{
 let mapleader = ","
 let maplocalleader = ";;"
 " }}}
-"
 "Plugins {{{
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
@@ -65,7 +63,6 @@ let g:vundle_default_git_proto = 'http'
     Plugin 'sheerun/vim-polyglot'
     " }}}
 " }}}
-"
 " Wildmenu completion {{{
 set wildmenu
 set wildmode=list:longest
@@ -74,7 +71,6 @@ set wildignore+=*.o,*.obj,*.a
 set wildignore+=*.sw?
 set wildignore+=*.DS_Store
 " }}}
-"
 " Tabs, spaces, wrapping {{{
 set tabstop=8
 set shiftwidth=4
@@ -85,7 +81,6 @@ set textwidth=80
 set formatoptions=qrn1
 "
 "}}}
-"
 " Backups {{{
 set undodir=~/.vim/tmp/undo//     " undo files
 set backupdir=~/.vim/tmp/backup// " backups
@@ -93,13 +88,12 @@ set backup                        " enable backups
 set noswapfile
 "
 "}}}
-"
 " Colorscheme {{{
 syntax enable
 set t_co=256
 "let g:solarized_termtrans=1
 set background=light
-colorscheme macvim
+colorscheme solarized
 "
 "}}}
 " GUI {{{
@@ -164,9 +158,8 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-"
 "}}}
-" Folding {{{
+"Folding {{{
 
 set foldlevelstart=1
 nnoremap <Space> za
@@ -187,7 +180,6 @@ endfunction " }}}
 set foldtext=MyFoldText()
 "
 "}}}
-"
 "Filetype specific {{{
 filetype plugin indent on         " Turn on file type detection.
     " C++ {{{
@@ -237,29 +229,21 @@ filetype plugin indent on         " Turn on file type detection.
     autocmd BufNewFile,BufRead *.tex set filetype=tex
     " }}}
 "}}}
-" Misc {{{
-" Autoreload VIM config
-"if has("autocmd")
-  "autocmd BufWritePost *vimrc source $MYVIMRC
-"endi
-
-" Remove whitespaces on save
-"autocmd BufWritePre * :%s/\s\+$//e
-"
-"}}}
-"
 " Plugin settings {{{
     " NERDTree {{{
     noremap <leader>n :NERDTreeToggle<cr>
     " }}}
     " airline {{{
-    let g:airline_theme = 'molokai'
+
     if has('gui_macvim')
-        let g:airline_powerline_fonts = 0
-        let g:airline_left_sep=''
-        let g:airline_right_sep=''
-        let g:airline_section_z=''
-    endif
+        let g:airline_theme = 'molokai'
+    else
+        let g:airline_theme = 'solarized'
+    end
+    let g:airline_powerline_fonts = 0
+    let g:airline_left_sep=''
+    let g:airline_right_sep=''
+    let g:airline_section_z=''
     " }}}
     " tagbar {{{
     nnoremap <leader>t :TagbarToggle<CR>
