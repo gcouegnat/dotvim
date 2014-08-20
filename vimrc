@@ -32,11 +32,11 @@ set autowrite
 set completeopt=longest,menuone,preview
 au FocusLost * :silent! wall
 " }}}
-"Leader key {{{
+" Leader key {{{
 let mapleader = ","
 let maplocalleader = ";;"
 " }}}
-"Plugins {{{
+" Plugins {{{
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Plugin 'gmarik/vundle'
@@ -45,6 +45,7 @@ let g:vundle_default_git_proto = 'http'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'sjl/badwolf'
     Plugin 'tomasr/molokai'
+    Plugin 'chriskempson/base16-vim'
     "}}}
     " Misc {{{
     Plugin 'kien/ctrlp.vim'
