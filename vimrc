@@ -93,7 +93,7 @@ set noswapfile
 syntax enable
 set t_co=256
 "let g:solarized_termtrans=1
-set background=light
+set background=dark
 colorscheme solarized
 "
 "}}}
@@ -104,9 +104,9 @@ if has('gui_running')
     set background=dark
     colorscheme molokai
     if has('gui_macvim')
-        "set guifont=Inconsolata\ for\ Powerline:h14
-        set guifont=InputMonoNarrow-Light:h12
-        set linespace=2
+        "set guifont=InputMonoNarrow-Light:h12
+        "set linespace=2
+        set guifont=Inconsolata:h14
     endif
 endif
 "
