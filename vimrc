@@ -40,29 +40,28 @@ let maplocalleader = ";;"
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Plugin 'gmarik/vundle'
-let g:vundle_default_git_proto = 'http'
-    " Colors {{{
-    Plugin 'altercation/vim-colors-solarized'
-    Plugin 'sjl/badwolf'
-    Plugin 'tomasr/molokai'
-    Plugin 'chriskempson/base16-vim'
-    "}}}
-    " Misc {{{
-    Plugin 'kien/ctrlp.vim'
-    Plugin 'scrooloose/nerdtree'
-    Plugin 'scrooloose/nerdcommenter'
-    Plugin 'majutsushi/tagbar'
-    Plugin 'godlygeek/tabular'
-    Plugin 'bling/vim-airline'
-    Plugin 'paranoida/vim-airlineish'
-    Plugin 'ervandew/supertab'
-    Plugin 'msanders/snipmate.vim'
-    Plugin 'terryma/vim-expand-region'
-    "}}}
-    " Languages {{{
-    Plugin 'tshirtman/vim-cython'
-    Plugin 'sheerun/vim-polyglot'
-    " }}}
+" Colors {{{
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'sjl/badwolf'
+Plugin 'tomasr/molokai'
+Plugin 'chriskempson/base16-vim'
+"}}}
+" Misc {{{
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'majutsushi/tagbar'
+Plugin 'godlygeek/tabular'
+Plugin 'bling/vim-airline'
+Plugin 'paranoida/vim-airlineish'
+Plugin 'ervandew/supertab'
+Plugin 'msanders/snipmate.vim'
+Plugin 'terryma/vim-expand-region'
+"}}}
+" Languages {{{
+Plugin 'tshirtman/vim-cython'
+Plugin 'sheerun/vim-polyglot'
+" }}}
 " }}}
 " Wildmenu completion {{{
 set wildmenu
@@ -183,52 +182,52 @@ set foldtext=MyFoldText()
 "}}}
 "Filetype specific {{{
 filetype plugin indent on         " Turn on file type detection.
-    " C++ {{{
-    au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set omnifunc=omni#cpp#complete#Main
-    au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set filetype=cpp
-    " }}}
-    " Vim {{{
-    augroup ft_vim
-        au!
-        au FileType vim setlocal foldmethod=marker
-        au FileType help setlocal textwidth=78
-    augroup end
-    " }}}
-    " SCons {{{
-    autocmd bufnewfile,bufread SCons* set filetype=python
-    " }}}
-    " Ninja {{{
-    autocmd bufnewfile,bufread *.ninja set filetype=ninja
-    " }}}
-    " Octave {{{
-    augroup filetypedetect
-        au! BufRead,BufNewFile *.m,*.oct set filetype=octave
-    augroup end
+" C++ {{{
+au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set omnifunc=omni#cpp#complete#Main
+au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set filetype=cpp
+" }}}
+" Vim {{{
+augroup ft_vim
+    au!
+    au FileType vim setlocal foldmethod=marker
+    au FileType help setlocal textwidth=78
+augroup end
+" }}}
+" SCons {{{
+autocmd bufnewfile,bufread SCons* set filetype=python
+" }}}
+" Ninja {{{
+autocmd bufnewfile,bufread *.ninja set filetype=ninja
+" }}}
+" Octave {{{
+augroup filetypedetect
+    au! BufRead,BufNewFile *.m,*.oct set filetype=octave
+augroup end
 
-    if has("autocmd") && exists("+omnifunc")
-        autocmd Filetype octave
-            \if &omnifunc == "" |
-            \setlocal omnifunc=syntaxcomplete#Complete |
-            \endif
-    endif
-    " }}}
-    " Markdown {{{
-    autocmd BufNewFile,BufRead *.md,*.markdown set filetype=markdown
-    autocmd BufNewFile,BufRead *.md,*.markdown set filetype=markdown
-    augroup ft_markdown
-        au!
-        au FileType markdown setlocal linespace=2
-    augroup end
-    " }}}
-    " Gnuplot {{{
-    autocmd BufNewFile,BufRead *.gp,*.gnuplot set filetype=gnuplot
-    " }}}
-    " Gmsh {{{
-    autocmd BufNewFile,BufRead *.geo set filetype=gmsh
-    " }}}
-    " LaTeX {{{
-    autocmd BufNewFile,BufRead *.tex set filetype=tex
-    " }}}
+if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype octave
+        \if &omnifunc == "" |
+        \setlocal omnifunc=syntaxcomplete#Complete |
+        \endif
+endif
+" }}}
+" Markdown {{{
+autocmd BufNewFile,BufRead *.md,*.markdown set filetype=markdown
+autocmd BufNewFile,BufRead *.md,*.markdown set filetype=markdown
+augroup ft_markdown
+    au!
+    au FileType markdown setlocal linespace=2
+augroup end
+" }}}
+" Gnuplot {{{
+autocmd BufNewFile,BufRead *.gp,*.gnuplot set filetype=gnuplot
+" }}}
+" Gmsh {{{
+autocmd BufNewFile,BufRead *.geo set filetype=gmsh
+" }}}
+" LaTeX {{{
+autocmd BufNewFile,BufRead *.tex set filetype=tex
+" }}}
 "}}}
 " Plugin settings {{{
     " NERDTree {{{
