@@ -106,7 +106,8 @@ if has('gui_running')
     if has('gui_macvim')
         "set guifont=InputMonoNarrow-Light:h12
         "set linespace=2
-        set guifont=Inconsolata:h14
+        "set guifont=Inconsolata:h14
+        set guifont=Fira\ Mono:h12
     endif
 endif
 "
