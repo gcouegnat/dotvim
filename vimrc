@@ -1,78 +1,87 @@
 " Guillaume Couégnat <guillaume.couegnat@gmail.com>
 
-" Basic options {{{
-filetype off
 set nocompatible
-set encoding=utf-8
-set showcmd
-set showmode
-set backspace=indent,eol,start
-set hidden
-set cursorline
-set wildmenu
-set ignorecase
-set smartcase
-set nonumber
-set ruler
-set incsearch
-set hlsearch
-set laststatus=2
-set history=1000
-set undofile
-set undoreload=1000
-set scrolloff=3
-set title
-set visualbell
-set nolist
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-set showbreak=↪
-set shell=/bin/bash
-set autoread
-set autowrite
-set completeopt=longest,menuone,preview
-au FocusLost * :silent! wall
-" }}}
-" Leader key {{{
+filetype off
+
+" # Leader key {{{
 let mapleader = ","
 let maplocalleader = ";;"
 " }}}
-" Plugins {{{
+" # Plugins {{{
 set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+call vundle#begin()
 Plugin 'gmarik/vundle'
-" Colors {{{
+" ## Colorscheme {{{
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
-Plugin 'chriskempson/base16-vim'
-"}}}
-" Misc {{{
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'majutsushi/tagbar'
-Plugin 'godlygeek/tabular'
-"Plugin 'bling/vim-airline'
-"Plugin 'paranoida/vim-airlineish'
-Plugin 'itchyny/lightline.vim'
+Plugin 'croaker/mustang-vim'
+Plugin 'reedes/vim-colors-pencil'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'noahfrederick/vim-hemisu'
+" }}}
+" ## General usage {{{
 Plugin 'ervandew/supertab'
-Plugin 'msanders/snipmate.vim'
-Plugin 'terryma/vim-expand-region'
-"}}}
-" Languages {{{
+Plugin 'godlygeek/tabular'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-commentary.git'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-endwise'
+Plugin 'Yggdroot/indentLine'
+" }}}
+" ## Syntax {{{
 Plugin 'tshirtman/vim-cython'
 Plugin 'sheerun/vim-polyglot'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'plasticboy/vim-markdown'
+"Plugin 'vim-pandoc/vim-pandoc'
+"Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'lervag/vimtex'
+" Plugin 'scrooloose/syntastic'
 " }}}
+call vundle#end()
+filetype plugin indent on
 " }}}
-" Wildmenu completion {{{
+" # Basic options {{{
+set autoread
+set autowrite
+set backspace=indent,eol,start
+set completeopt=longest,menuone,preview
+set cursorline
+set encoding=utf-8
+set hidden
+set history=1000
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set nolist
+set number
+set numberwidth=4
+set relativenumber
+set ruler
+set scrolloff=3
+set shell=/bin/bash
+set showbreak=↪
+set showcmd
+set showmode
+set smartcase
+set title
+set undofile
+set undoreload=1000
+set visualbell
+au FocusLost * :silent! wall
+
 set wildmenu
 set wildmode=list:longest
 set wildignore+=.hg,.git,.svn
 set wildignore+=*.o,*.obj,*.a
 set wildignore+=*.sw?
 set wildignore+=*.DS_Store
-" }}}
-" Tabs, spaces, wrapping {{{
+
 set tabstop=8
 set shiftwidth=4
 set softtabstop=4
@@ -80,38 +89,27 @@ set expandtab
 set nowrap
 set textwidth=80
 set formatoptions=qrn1
-"
-"}}}
-" Backups {{{
+
 set undodir=~/.vim/tmp/undo//     " undo files
 set backupdir=~/.vim/tmp/backup// " backups
 set backup                        " enable backups
 set noswapfile
-"
+
 "}}}
-" Colorscheme {{{
-syntax enable
+" # Colorscheme & GUI {{{
 set t_co=256
-"let g:solarized_termtrans=1
-set background=dark
-colorscheme solarized
+syntax enable
+colorscheme smyck
 "
-"}}}
-" GUI {{{
 if has('gui_running')
     set guioptions=egmrt
     set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
-    set background=dark
-    colorscheme molokai
     if has('gui_macvim')
-        "set guifont=InputMonoNarrow-Light:h12
-        "set linespace=2
-        "set guifont=Inconsolata:h14
-        set guifont=Fira\ Mono:h12
+        set guifont=Menlo:h14
     endif
 endif
-"
 "}}}
+" # More options {{{
 " Mapping {{{
 " Clean trailing whitespace
 nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
@@ -125,16 +123,11 @@ nnoremap <leader>cd :cd %:h<cr>
 " Swap background
 " http://tilvim.com/2013/07/31/swapping-bg.html
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
-
 " http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 nnoremap <leader>o :CtrlP<CR>
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
-
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-"
 "}}}
 " Searching and movement {{{
 nnoremap / /\v
@@ -161,14 +154,12 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 "}}}
-"Folding {{{
-
+" Folding {{{
 set foldlevelstart=1
 nnoremap <Space> za
 vnoremap <Space> za
-
 " from Steve Losh
-function! MyFoldText() " {{{
+function! MyFoldText()
     let line = getline(v:foldstart)
     let nucolwidth = &fdc + &number * &numberwidth
     let windowwidth = winwidth(0) - nucolwidth - 3
@@ -178,12 +169,11 @@ function! MyFoldText() " {{{
     let line = strpart(line, 0, windowwidth - 4 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
     return line . '.' . repeat("-",fillcharcount) . foldedlinecount . '.' . ' '
-endfunction " }}}
+endfunction
 set foldtext=MyFoldText()
-"
 "}}}
-"Filetype specific {{{
-filetype plugin indent on         " Turn on file type detection.
+" }}}
+" # Filetype specific {{{
 " C++ {{{
 au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set omnifunc=omni#cpp#complete#Main
 au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set filetype=cpp
@@ -200,18 +190,6 @@ autocmd bufnewfile,bufread SCons* set filetype=python
 " }}}
 " Ninja {{{
 autocmd bufnewfile,bufread *.ninja set filetype=ninja
-" }}}
-" Octave {{{
-augroup filetypedetect
-    au! BufRead,BufNewFile *.m,*.oct set filetype=octave
-augroup end
-
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype octave
-        \if &omnifunc == "" |
-        \setlocal omnifunc=syntaxcomplete#Complete |
-        \endif
-endif
 " }}}
 " Markdown {{{
 autocmd BufNewFile,BufRead *.md,*.markdown set filetype=markdown
@@ -231,27 +209,13 @@ autocmd BufNewFile,BufRead *.geo set filetype=gmsh
 autocmd BufNewFile,BufRead *.tex set filetype=tex
 " }}}
 "}}}
-" Plugin settings {{{
-    " NERDTree {{{
-    noremap <leader>n :NERDTreeToggle<cr>
-    " }}}
-    " airline {{{
-
-    if has('gui_macvim')
-        let g:airline_theme = 'molokai'
-    else
-        let g:airline_theme = 'solarized'
-    end
-    let g:airline_powerline_fonts = 0
-    let g:airline_left_sep=''
-    let g:airline_right_sep=''
-    let g:airline_section_z=''
-    " }}}
-    " tagbar {{{
-    nnoremap <leader>t :TagbarToggle<CR>
-    let g:tagbar_iconchars = ['+', '-']
-    " }}}
-    " CtrlP {{{
-    nnoremap <C-t> :CtrlPTag<CR>
-    " }}}
+" # Plugins settings {{{
+" ## Tagbar {{{
+nnoremap <leader>t :TagbarToggle<CR>
+let g:tagbar_iconchars = ['+', '-']
+" }}}
+" indentLine {{{ 
+let g:indentLine_enabled = 1
+let g:indentLine_showFirstIndentLevel = 1
+" }}}
 " }}}
