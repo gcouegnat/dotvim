@@ -23,13 +23,13 @@ Plugin 'noahfrederick/vim-hemisu'
 " ## General usage {{{
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
-Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-commentary.git'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-endwise'
 Plugin 'Yggdroot/indentLine'
+Plugin 'itchyny/lightline.vim'
 " }}}
 " ## Syntax {{{
 Plugin 'tshirtman/vim-cython'
@@ -99,13 +99,14 @@ set noswapfile
 " # Colorscheme & GUI {{{
 set t_co=256
 syntax enable
-colorscheme smyck
-"
+set background=dark
+colorscheme hemisu
+
 if has('gui_running')
     set guioptions=egmrt
     set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
     if has('gui_macvim')
-        set guifont=Menlo:h14
+        set guifont=Inconsolata:h14
     endif
 endif
 "}}}
@@ -117,8 +118,6 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 noremap <leader><space> :nohlsearch<CR><CR>
-" Alignment
-nnoremap <leader>a= :Tabular /=<CR>
 nnoremap <leader>cd :cd %:h<cr>
 " Swap background
 " http://tilvim.com/2013/07/31/swapping-bg.html
