@@ -16,9 +16,9 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
 Plugin 'croaker/mustang-vim'
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'nanotech/jellybeans.vim'
 Plugin 'noahfrederick/vim-hemisu'
+Plugin 'croaky/vim-colors-github'
+Plugin 'w0ng/vim-hybrid'
 " }}}
 " ## General usage {{{
 Plugin 'ervandew/supertab'
