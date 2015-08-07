@@ -106,7 +106,7 @@ if has('gui_running')
     set guioptions=egmrt
     set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
     if has('gui_macvim')
-        set guifont=Inconsolata:h14
+        set guifont=Inconsolata:h16
     endif
 endif
 "}}}
