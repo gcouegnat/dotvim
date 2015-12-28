@@ -16,11 +16,13 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
 Plugin 'croaker/mustang-vim'
+Plugin 'nanotech/jellybeans.vim'
 Plugin 'noahfrederick/vim-hemisu'
 Plugin 'croaky/vim-colors-github'
 Plugin 'w0ng/vim-hybrid'
 " }}}
 " ## General usage {{{
+Plugin 'Shougo/neocomplete'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'kien/ctrlp.vim'
@@ -30,6 +32,7 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-endwise'
 Plugin 'Yggdroot/indentLine'
 Plugin 'itchyny/lightline.vim'
+Plugin 'junegunn/goyo.vim'
 " }}}
 " ## Syntax {{{
 Plugin 'tshirtman/vim-cython'
@@ -38,7 +41,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'vim-pandoc/vim-pandoc'
 "Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'lervag/vimtex'
+" Plugin 'lervag/vimtex'
 " Plugin 'scrooloose/syntastic'
 " }}}
 call vundle#end()
@@ -99,14 +102,15 @@ set noswapfile
 " # Colorscheme & GUI {{{
 set t_co=256
 syntax enable
+
 set background=dark
-colorscheme hemisu
+colorscheme jellybeans
 
 if has('gui_running')
-    set guioptions=egmrt
+    set guioptions=""
     set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
     if has('gui_macvim')
-        set guifont=Inconsolata:h16
+        set guifont=Hack:h14
     endif
 endif
 "}}}
@@ -216,5 +220,10 @@ let g:tagbar_iconchars = ['+', '-']
 " indentLine {{{ 
 let g:indentLine_enabled = 1
 let g:indentLine_showFirstIndentLevel = 1
+" }}}
+" lightline {{{
+let g:lightline = {
+            \ 'colorscheme': 'jellybeans'
+            \ }
 " }}}
 " }}}
