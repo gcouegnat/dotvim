@@ -1,121 +1,137 @@
 " Guillaume Couégnat <guillaume.couegnat@gmail.com>
 
+" Preamble {{{
 set nocompatible
 filetype off
-
-" # Leader key {{{
 let mapleader = ","
-let maplocalleader = ";;"
 " }}}
-" # Plugins {{{
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
-Plugin 'gmarik/vundle'
-" ## Colorscheme {{{
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'sjl/badwolf'
-Plugin 'tomasr/molokai'
-Plugin 'croaker/mustang-vim'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'noahfrederick/vim-hemisu'
-Plugin 'croaky/vim-colors-github'
-Plugin 'w0ng/vim-hybrid'
-" }}}
-" ## General usage {{{
-Plugin 'Shougo/neocomplete'
-Plugin 'ervandew/supertab'
-Plugin 'godlygeek/tabular'
-Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-commentary.git'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-endwise'
-Plugin 'Yggdroot/indentLine'
-Plugin 'itchyny/lightline.vim'
-Plugin 'junegunn/goyo.vim'
-" }}}
-" ## Syntax {{{
-Plugin 'tshirtman/vim-cython'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'plasticboy/vim-markdown'
-"Plugin 'vim-pandoc/vim-pandoc'
-"Plugin 'vim-pandoc/vim-pandoc-syntax'
-" Plugin 'lervag/vimtex'
-" Plugin 'scrooloose/syntastic'
-" }}}
-call vundle#end()
-filetype plugin indent on
-" }}}
-" # Basic options {{{
+" General options {{{
 set autoread
 set autowrite
 set backspace=indent,eol,start
-set completeopt=longest,menuone,preview
+set completeopt=menu
 set cursorline
 set encoding=utf-8
-set hidden
-set history=1000
+set laststatus=2
+set list
+set listchars=tab:▸\ ,extends:❯,precedes:❮
+set modeline
+set nonumber
+" set relativenumber
+set scrolloff=3
+set visualbell
+set undodir=~/.vim/tmp/undo//     " undo files
+set nobackup
+set noswapfile
+set splitright
+set splitbelow
+" Searching
 set hlsearch
 set ignorecase
 set incsearch
-set laststatus=2
-set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-set nolist
-set number
-set numberwidth=4
-set relativenumber
-set ruler
-set scrolloff=3
-set shell=/bin/bash
-set showbreak=↪
-set showcmd
-set showmode
+set showmatch
 set smartcase
-set title
-set undofile
-set undoreload=1000
-set visualbell
-au FocusLost * :silent! wall
-
 set wildmenu
-set wildmode=list:longest
+set wildmode=list:longest,list:full
 set wildignore+=.hg,.git,.svn
 set wildignore+=*.o,*.obj,*.a
 set wildignore+=*.sw?
 set wildignore+=*.DS_Store
-
-set tabstop=8
+" Text formating, tabs, etc.
+set expandtab
+set formatoptions=qrn1
+set nowrap
 set shiftwidth=4
 set softtabstop=4
-set expandtab
-set nowrap
+set tabstop=4
 set textwidth=80
-set formatoptions=qrn1
-
-set undodir=~/.vim/tmp/undo//     " undo files
-set backupdir=~/.vim/tmp/backup// " backups
-set backup                        " enable backups
-set noswapfile
-
 "}}}
-" # Colorscheme & GUI {{{
+" Plugins {{{
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
+Plugin 'gmarik/vundle'
+Plugin 'tpope/vim-sensible'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'sjl/badwolf'
+Plugin 'chriskempson/base16-vim'
+" Plugin 'itchyny/lightline.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'matze/vim-tex-fold'
+Plugin 'tpope/vim-commentary'
+Plugin 'SirVer/ultisnips.git'
+Plugin 'honza/vim-snippets'
+Plugin 'Shougo/neocomplete'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-surround'
+" Plugin 'Yggdroot/indentLine'
+Plugin 'junegunn/goyo.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'plasticboy/vim-markdown'
+" Plugin 'scrooloose/syntastic'
+" Plugin 'hura/vim-asymptote'
+call vundle#end()
+filetype plugin indent on
+"}}}
+" Plugins settings {{{
+" indentLine {{{
+let g:indentLine_enabled = 1
+let g:indentLine_showFirstIndentLevel = 1
+" }}}
+" lightline {{{
+" let g:lightline = {
+"             \ 'colorscheme': 'wombat',
+"             \ 'component': {
+"             \   'readonly': '%{&readonly?"✖":""}',
+"             \ },
+"             \ 'active': {
+"             \   'right': [['lineinfo'], ['percent']],
+"             \ },
+"             \ }
+"}}}
+" neocomplete {{{
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_auto_delimiter = 1
+let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#enable_refresh_always = 1
+" }}}
+" tagbar {{{
+nnoremap <leader>t :TagbarToggle<CR>
+let g:tagbar_iconchars = ['+', '-']
+" }}}
+" ultisnips {{{
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" }}}
+"}}}
+" Colorscheme & GUI {{{
 set t_co=256
 syntax enable
 
 set background=dark
-colorscheme jellybeans
+colorscheme base16-tomorrow
 
 if has('gui_running')
     set guioptions=""
     set guicursor=n-v-c:block-Cursor-blinkon0,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor,r-cr:hor20-Cursor,sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
+    set columns=132
+    set lines=999
     if has('gui_macvim')
-        set guifont=Hack:h14
+        " set guifont=Fira\ Mono:h12
+        colorscheme base16-tomorrow
+        set guifont=Source\ Code\ Pro\ Light:h13
     endif
 endif
 "}}}
-" # More options {{{
-" Mapping {{{
+" More options {{{
+"   Mapping {{{
 " Clean trailing whitespace
 nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " some more stuff
@@ -132,20 +148,11 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 "}}}
-" Searching and movement {{{
+"   Searching and movement {{{
 nnoremap / /\v
 vnoremap / /\v
-set smartcase
-set incsearch
-set showmatch
-set hlsearch
 set gdefault
 noremap <silent> <leader><space> :noh<cr>
-
-"map <Left>  :echo "no!"<cr>
-"map <Right> :echo "no!"<cr>
-"map <Up>    :echo "no!"<cr>
-"map <Down>  :echo "no!"<cr>
 
 noremap j gj
 noremap k gk
@@ -157,7 +164,7 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 "}}}
-" Folding {{{
+"   Folding {{{
 set foldlevelstart=1
 nnoremap <Space> za
 vnoremap <Space> za
@@ -173,13 +180,20 @@ function! MyFoldText()
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount)
     return line . '.' . repeat("-",fillcharcount) . foldedlinecount . '.' . ' '
 endfunction
+
 set foldtext=MyFoldText()
 "}}}
 " }}}
-" # Filetype specific {{{
+" Filetype specific {{{
 " C++ {{{
-au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set omnifunc=omni#cpp#complete#Main
 au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set filetype=cpp
+au BufNewFile,BufRead,BufEnter *.cpp,*.c++,*.C,*.hpp,*.tpp set omnifunc=omni#cpp#complete#Main
+" }}}
+" Python {{{
+augroup ft_python
+    au!
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+augroup end
 " }}}
 " Vim {{{
 augroup ft_vim
@@ -191,15 +205,11 @@ augroup end
 " SCons {{{
 autocmd bufnewfile,bufread SCons* set filetype=python
 " }}}
-" Ninja {{{
-autocmd bufnewfile,bufread *.ninja set filetype=ninja
-" }}}
 " Markdown {{{
-autocmd BufNewFile,BufRead *.md,*.markdown set filetype=markdown
 autocmd BufNewFile,BufRead *.md,*.markdown set filetype=markdown
 augroup ft_markdown
     au!
-    au FileType markdown setlocal linespace=2
+    au FileType markdown setlocal linespace=2 
 augroup end
 " }}}
 " Gnuplot {{{
@@ -209,21 +219,21 @@ autocmd BufNewFile,BufRead *.gp,*.gnuplot set filetype=gnuplot
 autocmd BufNewFile,BufRead *.geo set filetype=gmsh
 " }}}
 " LaTeX {{{
-autocmd BufNewFile,BufRead *.tex set filetype=tex
+autocmd BufNewFile,BufRead,BufEnter *.tex set filetype=tex
+autocmd BufNewFile,BufRead,BufEnter *.cls set filetype=tex
+augroup ft_tex
+    au!
+    au Filetype tex setlocal conceallevel=0
+augroup END
 " }}}
 "}}}
-" # Plugins settings {{{
-" ## Tagbar {{{
-nnoremap <leader>t :TagbarToggle<CR>
-let g:tagbar_iconchars = ['+', '-']
-" }}}
-" indentLine {{{ 
-let g:indentLine_enabled = 1
-let g:indentLine_showFirstIndentLevel = 1
-" }}}
-" lightline {{{
-let g:lightline = {
-            \ 'colorscheme': 'jellybeans'
-            \ }
-" }}}
+" Statusline {{{
+if has('statusline')
+    set statusline=
+    set statusline+=[%n]\ %<
+    set statusline+=%F
+    set statusline+=\ %(%w%m%)
+    set statusline+=%=
+    set statusline+=%l:%c\ %y
+endif
 " }}}
